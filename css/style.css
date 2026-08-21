@@ -22,7 +22,7 @@
   --accent-gold:  #B8863B;
 
   /* --- Type tokens --- */
-  --font-display: "Fraunces", Georgia, serif;
+  --font-display: "Poppins", serif;
   --font-body: "Source Sans 3", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "Courier New", monospace;
 
@@ -32,9 +32,8 @@
   color-scheme: light;
 }
 
-* { box-sizing: border-box; }
-
-html, body {
+* { 
+  box-sizing: border-box; 
   margin: 0;
   padding: 0;
 }
@@ -114,7 +113,7 @@ body {
 
 .subhead {
   margin: 6px 0 0 34px;
-  font-style: italic;
+  font-style: normal;
   font-family: var(--font-display);
   font-size: 1rem;
   color: #CBD6DA;
@@ -468,49 +467,6 @@ kbd {
   font-size: 0.72rem;
 }
 
-/* ---------------- Confirmation dialog ---------------- */
-
-.dialog-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(42, 36, 30, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 50;
-}
-
-.dialog-box {
-  background: var(--paper-raised);
-  border-radius: var(--radius-card);
-  padding: 24px 24px 20px;
-  max-width: 360px;
-  width: 100%;
-  box-shadow: 0 24px 60px -20px rgba(0,0,0,0.5);
-  animation: dialogPop 0.15s ease;
-}
-@keyframes dialogPop {
-  from { opacity: 0; transform: scale(0.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-.dialog-title {
-  margin: 0 0 6px;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-}
-.dialog-message {
-  margin: 0 0 18px;
-  color: var(--ink-soft);
-  font-size: 0.92rem;
-}
-.dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-}
 
 /* ---------------- Responsive ---------------- */
 
@@ -534,4 +490,15 @@ kbd {
   .footer-actions .btn { flex: 1; }
 
   .hint-strip { display: none; }
+
+  /* confirmation dialog: stack buttons and use full available width */
+  .dialog-box { padding: 20px 18px 16px; }
+  .dialog-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  .dialog-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
 }
