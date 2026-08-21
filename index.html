@@ -1,69 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>To-Do List</title>
-<link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Ledger — To-Do List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="app">
-    <header class="app-header">
-      <h1>My To-Do List</h1>
-      <button id="themeToggle" class="icon-btn" title="Toggle dark/light mode" aria-label="Toggle theme">🌙</button>
+  <div class="page">
+
+    <header class="ledger-header">
+      <div class="ledger-holes" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <p class="eyebrow">Kept since <span id="startDate">today</span></p>
+      <h1>The Daily Ledger</h1>
+      <p class="subhead">Write it down. Cross it off.</p>
     </header>
 
-    <form id="taskForm" class="task-form">
-      <input
-        type="text"
-        id="taskInput"
-        placeholder="What do you need to do?"
-        maxlength="120"
-        autocomplete="off"
-      />
-      <select id="prioritySelect" title="Priority">
-        <option value="low">Low</option>
-        <option value="medium" selected>Medium</option>
-        <option value="high">High</option>
-      </select>
-      <input type="date" id="dueDateInput" title="Due date" />
-      <button type="submit" class="add-btn">Add Task</button>
-    </form>
-    <div class="char-counter"><span id="charCount">0</span>/120</div>
+    <main class="ledger-card">
 
-    <div class="controls">
-      <div class="filters" id="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="active">Active</button>
-        <button class="filter-btn" data-filter="completed">Completed</button>
+      <form id="taskForm" class="entry-row" autocomplete="off">
+        <input
+          type="text"
+          id="taskInput"
+          maxlength="120"
+          placeholder="Enter a new task…"
+          aria-label="New task"
+        >
+        <button type="submit" id="addBtn" class="btn btn-primary">
+          <span class="btn-mark">+</span> Add Task
+        </button>
+      </form>
+      <p class="char-counter" id="charCounter">0 / 120</p>
+
+      <div class="toolbar">
+        <div class="filters" role="tablist" aria-label="Filter tasks">
+          <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn" data-filter="active" role="tab" aria-selected="false">Active</button>
+          <button class="filter-btn" data-filter="completed" role="tab" aria-selected="false">Completed</button>
+        </div>
+        <div class="search-wrap">
+          <input type="text" id="searchInput" placeholder="Search entries…" aria-label="Search tasks">
+        </div>
       </div>
-      <input type="text" id="searchInput" class="search-input" placeholder="Search tasks..." />
-    </div>
 
-    <ul id="taskList" class="task-list"></ul>
+      <ul id="taskList" class="task-list"></ul>
 
-    <p id="emptyState" class="empty-state">No tasks yet. Add one above to get started!</p>
+      <p id="emptyState" class="empty-state" hidden>
+        The page is blank. <span>Add your first entry above.</span>
+      </p>
 
-    <footer class="app-footer">
-      <span id="taskCounter">0 tasks remaining</span>
-      <div class="footer-buttons">
-        <button id="clearCompletedBtn" class="text-btn">Clear Completed</button>
-        <button id="deleteAllBtn" class="text-btn danger">Delete All</button>
-      </div>
-    </footer>
+      <footer class="ledger-footer">
+        <p id="taskCounter" class="tally">0 entries remaining</p>
+        <div class="footer-actions">
+          <button id="clearCompletedBtn" class="btn btn-ghost">Clear Completed</button>
+          <button id="clearAllBtn" class="btn btn-ghost btn-danger-ghost">Delete All</button>
+        </div>
+      </footer>
+
+    </main>
+
+    <p class="hint-strip">
+      <kbd>Enter</kbd> add &nbsp;·&nbsp; <kbd>Esc</kbd> cancel edit &nbsp;·&nbsp; <kbd>Double-click</kbd> a task to edit
+    </p>
+
   </div>
 
-  <div id="confirmModal" class="modal hidden">
-    <div class="modal-content">
-      <p id="confirmMessage">Are you sure?</p>
-      <div class="modal-actions">
-        <button id="confirmYes" class="danger-btn">Yes, delete</button>
-        <button id="confirmNo" class="text-btn">Cancel</button>
+  <!-- Confirmation dialog for destructive actions -->
+  <div id="confirmDialog" class="dialog-overlay" hidden>
+    <div class="dialog-box" role="alertdialog" aria-modal="true" aria-labelledby="dialogTitle">
+      <p id="dialogTitle" class="dialog-title">Are you sure?</p>
+      <p id="dialogMessage" class="dialog-message"></p>
+      <div class="dialog-actions">
+        <button id="dialogCancel" class="btn btn-ghost">Cancel</button>
+        <button id="dialogConfirm" class="btn btn-danger">Delete</button>
       </div>
     </div>
   </div>
 
-  <script src="/js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

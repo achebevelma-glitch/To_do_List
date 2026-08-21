@@ -1,0 +1,103 @@
+# The Daily Ledger — To-Do List Web App
+
+A clean, notebook-styled to-do list built with plain **HTML, CSS, and
+JavaScript** — no frameworks, no build tools.
+
+## What it does
+
+The Daily Ledger lets you keep a running list of daily tasks: add them,
+check them off, edit them, reorder them, filter them, and clear them out —
+all saved automatically in your browser so nothing is lost on refresh.
+
+## How to run it
+
+1. Download `index.html`, `style.css`, and `script.js` into the same folder.
+2. Double-click `index.html` (or right-click → **Open with** your browser).
+3. That's it — no server, no install, no dependencies.
+
+*(Optional: for the best experience with local fonts loading reliably, you
+can also serve the folder with a simple local server, e.g. `npx serve` or
+VS Code's "Live Server" extension — but opening the file directly works
+fine too.)*
+
+## Features implemented
+
+**Add tasks**
+- Text input with an **Add Task** button.
+- Press **Enter** to add a task.
+- Empty or whitespace-only tasks are rejected.
+
+**Display tasks**
+- Each task shows its text, a checkbox, an **Edit** icon, and a **Delete**
+  icon, plus the date it was added.
+
+**Complete tasks**
+- Click the checkbox to mark a task done/undone.
+- Completed tasks get a strikethrough, a green checkbox, and muted text —
+  and can be toggled back to active at any time.
+
+**Delete tasks**
+- Delete icon removes a single task.
+- A confirmation dialog appears before deleting, showing the task text.
+
+**Edit tasks**
+- Click the **Edit** icon or double-click a task's text to edit it inline.
+- **Enter** or clicking away saves the edit; **Esc** cancels it.
+
+**Filters**
+- **All / Active / Completed** filter pills update the list instantly
+  with no page reload.
+
+**Task counter**
+- "`N entries remaining`" footer counter updates automatically on every
+  add, complete/uncomplete, or delete.
+
+**Clear Completed**
+- Removes every completed task at once, with a confirmation dialog.
+
+**Data persistence**
+- All tasks are saved to `localStorage` and reloaded automatically when
+  the page is refreshed or reopened.
+
+## Bonus features added
+
+- **Search tasks** — a live search box filters the visible list by text,
+  combined with the active filter.
+- **Delete All** button — clears the entire list (with confirmation).
+- **Character counter** — shows `n / 120` under the input and warns as
+  you approach the limit.
+- **Task creation date** — each task shows "Added <date>".
+- **Drag-and-drop reordering** — drag any task by its row to reorder the
+  list; the new order is saved.
+- **Animations** — new tasks fade/slide in, and completing a task draws
+  an ink strikethrough across it.
+- **Keyboard shortcuts** — `Enter` to add or save, `Esc` to cancel an
+  edit or close the confirmation dialog.
+
+## JavaScript concepts demonstrated
+
+- `const`/`let` variables, small pure helper functions
+- Arrays of task objects (`{ id, text, completed, createdAt }`)
+- DOM creation/manipulation (`createElement`, `appendChild`, `classList`)
+- Event listeners (`submit`, `click`, `input`, `keydown`, `dblclick`,
+  drag events)
+- Conditional logic (filter states, edit vs. delete vs. add)
+- Array methods: `filter()`, `find()`, `map()`-style rendering, `splice()`
+- `localStorage.getItem` / `setItem` for persistence
+
+## File structure
+
+```
+todo-project/
+│
+├── index.html
+├── style.css
+├── script.js
+└── README.md
+```
+
+## Note on the screenshot
+
+A screenshot isn't included in this generated bundle — after opening
+`index.html` in your browser, take a screenshot of the app (with a few
+sample tasks added) to include in your submission.
